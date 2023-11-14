@@ -4,37 +4,32 @@ import java.security.SecureRandom;
 public class ElGamalEncryption {
 
     public static void main(String[] args) {
-        //Выбор случайных чисел p, g, x, и y в диапазоне от 1 до 31
         BigInteger p = generateRandomNumberInRange(1, 31);
         BigInteger g = generateRandomNumberInRange(1, 31);
         BigInteger x = generateRandomNumberInRange(1, 31);
 
-        // Вычисление открытого ключа y
         BigInteger y = g.modPow(x, p);
 
-        //ключи g, p, y
         System.out.println("Открытый ключ (g, p, y): (" + g + ", " + p + ", " + y + ")");
 
         //шифр текст
         String originalMessage = "тот, кто ложится на два стула, падает на ребра.";
 
-        //Выбор случайного секретного числа ki в диапазоне от 1 до 31
         BigInteger k = generateRandomNumberInRange(1, 31);
 
-        // Шаг 5: Шифрование
+        //Шифрование
         String encryptedMessage = encrypt(originalMessage, k, g, y, p);
 
-        // Вывод зашифрованного сообщения
         System.out.println("Зашифрованное сообщение: " + encryptedMessage);
 
-        // Шаг 6: Расшифрование
+        //Расшифрование
         String decryptedMessage = decrypt(encryptedMessage, x, p);
 
-        // Вывод расшифрованного сообщения
+        //Вывод расшифрованного сообщения
         System.out.println("Расшифрованное сообщение: " + decryptedMessage);
     }
 
-    //Генерация случайного числа в указанном диапазоне
+    //Генерация случайного числа
     public static BigInteger generateRandomNumberInRange(int min, int max) {
         SecureRandom random = new SecureRandom();
         int range = max - min + 1;
