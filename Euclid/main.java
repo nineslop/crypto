@@ -1,7 +1,7 @@
 public class main {
     public static void main(String[] args) {
-        int num1 = 30107;
-        int num2 = 2618;
+        int num1 = 1215;
+        int num2 = 2755;
 
         int gcd = EuclideanAlgorithm.findGCD(num1, num2);
 
